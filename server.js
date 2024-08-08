@@ -6,7 +6,7 @@ const LeadModel= require('./LeadModel')
 const dotenv = require('dotenv')
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+
 
 
 
@@ -84,7 +84,7 @@ app.delete('/deletebyid:id',  (req, res) => {
 });
 
 // Start Server
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
   
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${process.env.PORT}`);
 });
