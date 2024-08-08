@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 
 
 
-// Middleware
+
 app.use(cors({
   origin: "https://lead-front.vercel.app", 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -22,24 +22,8 @@ app.use(bodyParser.json());
 const port= process.env.PORT || 1200
 
 
-// Connect to MongoDB
-// const connect = async () => {
-//   try {
-//  await mongoose.connect(process.env.MONGO_URI);
-// console.log("Connected to MongoDB");
-// } catch (error) {
-//     console.error("Error connecting to MongoDB:", error);
-// }
-// };
 mongoose.connect(process.env.MONGO_URI)
-// Define Schema and Model
 
-
-// Routes
-// app.get('/leads', async (req, res) => {
-//   const leads = await Lead.find().sort({ name: 1 }); // default sort by name
-//   res.json(leads);
-// });
 
 app.post('/leads', async (req, res) => {
   const { email, name, number, product } = req.body;
@@ -85,7 +69,7 @@ app.delete('/deletebyid:id',  (req, res) => {
 
 });
 
-// Start Server
+
 app.listen(port, () => {
     console.log("Server is running" , port);
 })
