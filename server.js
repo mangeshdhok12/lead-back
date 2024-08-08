@@ -3,9 +3,12 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const LeadModel= require('./LeadModel')
+const dotenv = require('dotenv')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+
 
 // Middleware
 app.use(cors({
@@ -13,17 +16,20 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
+dotenv.config({path:"./.env"})
 app.use(bodyParser.json());
 
+
 // Connect to MongoDB
-const connect = async () => {
-  try {
- await mongoose.connect('mongodb+srv://dhokmangesh67:mangesh123@leadclu.mti5r.mongodb.net/leadsdb?retryWrites=true&w=majority&appName=leadclu');
-console.log("Connected to MongoDB");
-} catch (error) {
-    console.error("Error connecting to MongoDB:", error);
-}
-};
+// const connect = async () => {
+//   try {
+//  await mongoose.connect(process.env.MONGO_URI);
+// console.log("Connected to MongoDB");
+// } catch (error) {
+//     console.error("Error connecting to MongoDB:", error);
+// }
+// };
+mongoose.connect(process.env.MONGO_URI)
 // Define Schema and Model
 
 
@@ -79,6 +85,6 @@ app.delete('/deletebyid:id',  (req, res) => {
 
 // Start Server
 app.listen(PORT, () => {
-  connect()
+  
   console.log(`Server running on port ${PORT}`);
 });
