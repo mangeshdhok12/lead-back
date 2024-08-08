@@ -19,6 +19,8 @@ app.use(cors({
 dotenv.config({path:"./.env"})
 app.use(bodyParser.json());
 
+const port= process.env.PORT || 1200
+
 
 // Connect to MongoDB
 // const connect = async () => {
@@ -84,7 +86,6 @@ app.delete('/deletebyid:id',  (req, res) => {
 });
 
 // Start Server
-app.listen(PORT, () => {
-  
-  console.log(`Server running on port ${PORT}`);
-});
+app.listen(port, () => {
+    console.log("Server is running" , port);
+})
